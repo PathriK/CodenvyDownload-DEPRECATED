@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <in.pathri.codenvydownload.preferancehandlers.LoginPreference
+        android:key="is_logged_in"
+        android:title="User Login"
+        android:summary="Logged In User: -None-"
+        android:persistent="true"
+        android:defaultValue="true" />
+    <ListPreference
+        android:dependency="is_logged_in"
+        android:key="workspace"
+        android:title="Workspace"
+        android:dialogTitle="Select Workspace"
+        android:persistent="true"
+        android:summary="No Workspace"
+        android:enabled="false"
+        category="workspace" />
+    <ListPreference
+        android:dependency="is_logged_in"
+        android:key="project"
+        android:title="Project"
+        android:dialogTitle="Select Project"
+        android:persistent="true"
+        android:enabled="false"
+        android:summary="No Project"
+        category="project" />
+</PreferenceScreen>

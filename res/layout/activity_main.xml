@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+    <TextView
+        android:id="@+id/current_project"
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip" />
+    <Button
+        android:id="@+id/build"
+        android:onClick="onBuild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Build, Download and Install" />
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Login"
+            android:padding="3dip" />
+        <ProgressBar
+            android:id="@+id/login_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/login_status"
+            android:text="-"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Build Trigger"
+            android:padding="3dip" />
+        <ProgressBar
+            android:id="@+id/trigger_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/trigger_status"
+            android:text="-"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Build Progress"
+            android:padding="3dip" />
+        <ProgressBar
+            android:id="@+id/build_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/build_status"
+            android:text="-"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Download"
+            android:padding="3dip" />
+        <ProgressBar
+            android:id="@+id/download_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Small.Inverse"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/download_status"
+            android:text="-"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+    <TextView
+        android:id="@+id/status_msg"
+        android:text=""
+        android:gravity="left"
+        android:padding="3dip" />
+</TableLayout>

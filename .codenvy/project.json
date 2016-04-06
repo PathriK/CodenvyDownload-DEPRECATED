@@ -1,0 +1,1 @@
+{"mixinTypes":[],"builders":{"configs":{},"default":"maven"},"runners":{"configs":{"system:/java/mobile/android442":{"ram":1000,"variables":{},"options":{}}},"default":"system:/java/mobile/android442"},"description":"Codenvy Download","type":"maven","attributes":{"languageVersion":["1.6"],"language":["java"]}}
