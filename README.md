@@ -15,7 +15,7 @@ This App can be used to trigger remote build and download the project artifact (
 5. Click on 'Build Download & Install'
 6. The Project gets build and the generated APK gets downloaded and installed automatically 
 
-**Play Store Beta Testing Link** : https://play.google.com/apps/testing...odenvydownload
+**Play Store Beta Testing Link** : https://play.google.com/apps/testing/in.pathri.codenvydownload
 
 Thanks
 
