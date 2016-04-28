@@ -20,7 +20,13 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -75,6 +81,27 @@ public class SetupActivity extends PreferenceActivity  {
             userCred = findPreference(IS_LOGGED_IN);
         }
         
+      @Override
+      public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+          LinearLayout v = (LinearLayout) super.onCreateView(inflater, container, savedInstanceState);
+
+          Button btn = new Button(getActivity().getApplicationContext());
+          btn.setText("Refresh");
+
+          v.addView(btn);
+          btn.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View v) {
+                if("-NONE-".equals(sharedPreferences.getString(USER_NAME, "-NONE-"))){
+                	toastThis("Please Login before refresh");
+                }else{
+                	CodenvyClient.getWorkspaceDetails(new WorkspaceResponseHandler(workspaceProgressDialog));  
+                }
+              }
+          });
+
+          return v;
+      }
+      
         @Override
         public void onAttach(Activity activity){
             workspaceProgressDialog = new CustomProgressDialog(getActivity(),"Workspace List Refresh","Please Wait...");
@@ -95,6 +122,7 @@ public class SetupActivity extends PreferenceActivity  {
                     CodenvyClient.getWorkspaceDetails(new WorkspaceResponseHandler(workspaceProgressDialog));
                     }else{
                     updateWorspacePreference();
+                    updateProjectPreference();
                 }                
             }
         }
@@ -153,12 +181,17 @@ public class SetupActivity extends PreferenceActivity  {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 String workspaceName = worspacePrefs.getEntry().toString();
                 editor.putString("workspace_name", workspaceName);
+              	 editor.remove(PROJECT);
                 editor.commit();
                 updateProjectPreference();
                 }else if(key.equals(PROJECT)){
                 projectPrefs.setSummary(projectPrefs.getEntry());
             }
         }
+      
+        private void toastThis(String msg){
+      		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    	  }
     }
     
     public static void updateWorspacePreference(){
@@ -171,11 +204,11 @@ public class SetupActivity extends PreferenceActivity  {
         }
         updateWorkspaceSummary(tempEntry.toString());
         worspacePrefs.setEnabled(true);
-        if(projectDetails.isEmpty()){
-            getProjectLists(workspaceValues);
-            }else{
-            updateProjectPreference();
-        }
+//         if(projectDetails.isEmpty()){
+//             getProjectLists(workspaceValues);
+//             }else{
+//             updateProjectPreference();
+//         }
     }
     
     public static void updateWorspacePreference(String[] namesArr,String[] idsArr){
@@ -185,7 +218,9 @@ public class SetupActivity extends PreferenceActivity  {
             }else{
             updateWorkspaceSummary("No Workspace Available for this User");
         }
-        updateWorspacePreference();
+        	updateWorspacePreference();
+      	getProjectLists(workspaceValues);
+      	updateProjectPreference();
     }
     
     public static void getProjectLists(String[] ids){
@@ -220,7 +255,7 @@ public class SetupActivity extends PreferenceActivity  {
         String temp = sharedPreferences.getString(WORKSPACE, "");
         if(!temp.equals("")){
             String[] projectsList = projectDetails.get(temp);
-            if(projectsList != null & projectsList.length != 0){
+            if(projectsList != null && projectsList.length != 0){
                 projectPrefs.setEntries(projectsList);
                 projectPrefs.setEntryValues(projectsList);
                 projectPrefs.setEnabled(true);
@@ -245,4 +280,6 @@ public class SetupActivity extends PreferenceActivity  {
     public static void updateProjectSummary(String statusText){
         projectPrefs.setSummary(statusText);
     }
+  
+
 }
