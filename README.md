@@ -1,3 +1,8 @@
+<pre>
+<b>WARNING:</b>
+  This project is deprecated. Please <b>do not use it</b> as <b>IT WILL NOT WORK</b> with the current Codenvy.io IDE.
+</pre>
+
 # CodenvyDownload
 
 There is a online (cloud) IDE with which users can work on various languages including Android. 
